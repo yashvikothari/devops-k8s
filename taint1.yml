@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-toleration1
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "hardware"
+    operator: "Equal"
+    value: "highspec"
+    effect: "NoSchedule"
+

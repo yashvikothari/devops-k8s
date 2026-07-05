@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: readiness
+  name: readiness
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: readiness
+  template:
+    metadata:
+      labels:
+        app: readiness
+    spec:
+      containers:
+      - name: readiness
+        image: devopstechlab1/kubweb
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30

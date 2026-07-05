@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-cm
+spec:
+  containers:
+    - name: mysql-cm
+      image: mysql:5.7
+      env:
+        # Define the environment variable
+        - name: MYSQL_ROOT_PASSWORD # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: devdbcred          # The ConfigMap this value comes from.
+              key: MYSQL_ROOT_PASSWORD # The key to fetch.
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: devdbcred
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: devdbcred
+              key: MYSQL_PASSWORD

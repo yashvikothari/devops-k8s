@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-webserver #hostpath-pod
+spec: 
+  containers:
+  - name: test-webserver #hostpath-container
+    image: nginx
+    volumeMounts:
+    - name: mypd #containerpath
+      mountPath: "/var/www/html"
+  volumes:
+  - name: mypd #hostsystempath
+    hostPath:
+      path: /beta
+      type: DirectoryOrCreate

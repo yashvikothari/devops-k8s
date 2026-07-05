@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  namespace: dev  
+  labels:
+    apptype: frontend
+    env: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      env: prod
+      apptype: frontend
+  template:
+    metadata:
+      labels:
+        env: prod
+        apptype: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx

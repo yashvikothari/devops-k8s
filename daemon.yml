@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: frontend-daemon
+  labels:
+    apptype: frontend
+    env: prod
+spec:
+  selector:
+    matchLabels:
+      env: prod
+      apptype: frontend
+  template:
+    metadata:
+      labels:
+        env: prod
+        apptype: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16.1
